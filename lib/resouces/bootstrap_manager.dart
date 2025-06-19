@@ -94,7 +94,7 @@ double bootstrapMaxWidthNonFluid(double width) {
 /// Implementation of the Bootstrap .container and .container-fluid
 ///
 class BootstrapContainer extends StatelessWidget {
-  BootstrapContainer({
+  const BootstrapContainer({
     Key? key,
     required this.children,
     this.fluid = false,
@@ -181,7 +181,7 @@ class BootstrapContainer extends StatelessWidget {
 /// A [BootstrapRow] may only contain [BootstrapCol] children.
 ///
 class BootstrapRow extends StatelessWidget {
-   BootstrapRow({
+   const BootstrapRow({super.key,
     required this.children,
     this.decoration,
     this.height,
@@ -250,7 +250,7 @@ class BootstrapRow extends StatelessWidget {
 /// Implementation of the Bootstrap .col-*
 ///
 class BootstrapCol extends StatelessWidget {
-  BootstrapCol({
+  BootstrapCol({super.key,
     required this.child,
     this.fit = FlexFit.loose,
     this.absoluteSizes = true,
