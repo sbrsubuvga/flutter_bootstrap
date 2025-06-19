@@ -95,12 +95,12 @@ double bootstrapMaxWidthNonFluid(double width) {
 ///
 class BootstrapContainer extends StatelessWidget {
   const BootstrapContainer({
-    Key? key,
+    super.key,
     required this.children,
     this.fluid = false,
     this.decoration,
     this.padding,
-  }) : super(key: key);
+  });
 
   ///
   /// Is the container fluid => if yes, takes the whole width
