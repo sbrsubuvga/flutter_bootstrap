@@ -30,7 +30,7 @@ class ExampleHomePage extends StatelessWidget {
         title: const Text('Bootstrap Example'),
       ),
       body: BootstrapRow(
-         children: [
+        children: [
           BootstrapCol(
             sizes: 'col-12 col-md-6',
             child: Container(
@@ -67,7 +67,7 @@ class ExampleHomePage extends StatelessWidget {
               child: const Text('Column 2'),
             ),
           ),
-         ],
+        ],
       ),
     );
   }
