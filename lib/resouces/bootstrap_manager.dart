@@ -6,6 +6,7 @@ List<String> _prefixes = ['xl', 'lg', 'md', 'sm', ''];
 List<String> _prefixesReversed = ['', 'sm', 'md', 'lg', 'xl'];
 
 double _oneColumnRatio = 0.083333;
+double _gutterSize = 0.0;
 int _numberOfColumns = 12;
 
 ///
