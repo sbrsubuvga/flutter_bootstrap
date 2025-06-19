@@ -6,7 +6,6 @@ List<String> _prefixes = ['xl', 'lg', 'md', 'sm', ''];
 List<String> _prefixesReversed = ['', 'sm', 'md', 'lg', 'xl'];
 
 double _oneColumnRatio = 0.083333;
-double _gutterSize = 0.0;
 int _numberOfColumns = 12;
 
 ///
@@ -24,13 +23,6 @@ void bootstrapGridParameters({
       ]);
     }
 
-    if (gutterSize < 0.0 || gutterSize > 96.0) {
-      throw FlutterError.fromParts(<DiagnosticsNode>[
-        ErrorSummary('Invalid gutter size: $gutterSize'),
-        ErrorHint('The gutterSize must be inside the [0.0; 96.0] range.'),
-      ]);
-    }
-
     return true;
   }());
 
@@ -39,7 +31,6 @@ void bootstrapGridParameters({
   //
   _numberOfColumns = numberOfColumns;
   _oneColumnRatio = 1.0 / numberOfColumns;
-  _gutterSize = gutterSize;
 }
 
 ///
