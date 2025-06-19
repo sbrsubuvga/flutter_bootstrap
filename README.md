@@ -33,7 +33,7 @@ To use this package, add it to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  bootstrap: ^0.0.1
+  bootstrap: ^0.0.2
 ```
 
 
