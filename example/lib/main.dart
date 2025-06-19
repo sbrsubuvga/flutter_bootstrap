@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bootstrap/bootstrap.dart'; // Import your package.
+import 'package:bootstrap_plus/bootstrap_plus.dart'; // Import your package.
 
 void main() {
   runApp(const MyApp());
@@ -49,7 +49,7 @@ class ExampleHomePage extends StatelessWidget {
               child: const Text('Column 2'),
             ),
           ),
-           BootstrapCol(
+          BootstrapCol(
             sizes: 'col-12 col-md-3',
             child: Container(
               color: Colors.red,
