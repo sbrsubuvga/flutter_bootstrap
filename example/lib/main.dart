@@ -1,3 +1,5 @@
+import 'package:bootstrap_plus/resouces/enums.dart';
+import 'package:bootstrap_plus/resouces/models/bootstrap_col_size.dart';
 import 'package:flutter/material.dart';
 import 'package:bootstrap_plus/bootstrap_plus.dart'; // Import your package.
 
@@ -32,7 +34,8 @@ class ExampleHomePage extends StatelessWidget {
       body: BootstrapRow(
         children: [
           BootstrapCol(
-            sizes: 'col-12 col-md-6',
+            offsets: GridOffsetSize(xl: ColSize.col2,lg:ColSize.col1),
+            sizes:GridColSize(xl: ColSize.col4,lg:ColSize.col6 ,md: ColSize.col6), /// 'col-12 col-xl-8 col-lg-6 col-md-6',
             child: Container(
               color: Colors.red,
               height: 100,
@@ -41,7 +44,8 @@ class ExampleHomePage extends StatelessWidget {
             ),
           ),
           BootstrapCol(
-            sizes: 'col-12 col-md-6',
+            sizes:GridColSize(xl: ColSize.col4,lg:ColSize.col6 ,md: ColSize.col6), /// 'col-12 col-xl-4 col-lg-6 col-md-6',
+
             child: Container(
               color: Colors.blue,
               height: 100,
@@ -50,21 +54,75 @@ class ExampleHomePage extends StatelessWidget {
             ),
           ),
           BootstrapCol(
-            sizes: 'col-12 col-md-3',
+            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col4,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
             child: Container(
-              color: Colors.red,
+              color: Colors.green,
               height: 100,
               alignment: Alignment.center,
-              child: const Text('Column 1'),
+              child: const Text('Column 3'),
             ),
           ),
           BootstrapCol(
-            sizes: 'col-12 col-md-3',
+            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col4,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
             child: Container(
-              color: Colors.blue,
+              color: Colors.yellow,
               height: 100,
               alignment: Alignment.center,
-              child: const Text('Column 2'),
+              child: const Text('Column 4'),
+            ),
+          ),
+          BootstrapCol(
+            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col0,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
+            child: Container(
+              color: Colors.brown,
+              height: 100,
+              alignment: Alignment.center,
+              child: const Text('Column 5'),
+            ),
+          ),
+          BootstrapCol(
+            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col4,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
+            child: Container(
+              color: Colors.orange,
+              height: 100,
+              alignment: Alignment.center,
+              child: const Text('Column 6'),
+            ),
+          ),
+          BootstrapCol(
+            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
+            child: Container(
+              color: Colors.orange,
+              height: 100,
+              alignment: Alignment.center,
+              child: const Text('Column 6'),
+            ),
+          ),
+          BootstrapCol(
+            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
+            child: Container(
+              color: Colors.orange,
+              height: 100,
+              alignment: Alignment.center,
+              child: const Text('Column 6'),
+            ),
+          ),
+          BootstrapCol(
+            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
+            child: Container(
+              color: Colors.orange,
+              height: 100,
+              alignment: Alignment.center,
+              child: const Text('Column 6'),
+            ),
+          ),
+          BootstrapCol(
+            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
+            child: Container(
+              color: Colors.orange,
+              height: 100,
+              alignment: Alignment.center,
+              child: const Text('Column 6'),
             ),
           ),
         ],

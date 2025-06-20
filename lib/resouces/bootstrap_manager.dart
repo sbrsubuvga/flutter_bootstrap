@@ -1,61 +1,29 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:bootstrap_plus/resouces/models/bootstrap_col_size.dart';
 
-List<String> _prefixes = ['xl', 'lg', 'md', 'sm', ''];
-List<String> _prefixesReversed = ['', 'sm', 'md', 'lg', 'xl'];
+import 'enums.dart';
 
 double _oneColumnRatio = 0.083333;
-int _numberOfColumns = 12;
-
-///
-/// Customization of the grid
-///
-void bootstrapGridParameters({
-  int numberOfColumns = 12,
-  double gutterSize = 24,
-}) {
-  assert(() {
-    if (numberOfColumns < 10 || numberOfColumns > 24) {
-      throw FlutterError.fromParts(<DiagnosticsNode>[
-        ErrorSummary('Invalid number of columns: $numberOfColumns'),
-        ErrorHint('The number of columns must be inside the [10; 24] range.'),
-      ]);
-    }
-
-    return true;
-  }());
-
-  //
-  // Memorize the parameters
-  //
-  _numberOfColumns = numberOfColumns;
-  _oneColumnRatio = 1.0 / numberOfColumns;
-}
 
 ///
 /// Returns the definition prefix, based on the available width
 ///
-String bootstrapPrefixBasedOnWidth(double width) {
-  String pfx = "";
-
+ColSize bootstrapPrefixBasedOnWidth(double width) {
   if (width > 1200) {
-    return "xl";
+    return ColSize.col12; // xl
   }
-
   if (width > 992) {
-    return "lg";
+    return ColSize.col10; // lg
   }
-
   if (width > 767) {
-    return "md";
+    return ColSize.col8; // md
   }
-
   if (width > 575) {
-    return "sm";
+    return ColSize.col6; // sm
   }
-
-  return pfx;
+  return ColSize.col6; // xs
 }
 
 ///
@@ -201,7 +169,7 @@ class BootstrapRow extends StatelessWidget {
         //
         // Get the prefix for the definition, based on the available width
         //
-        String pfx = bootstrapPrefixBasedOnWidth(constraints.maxWidth);
+        ColSize pfx = bootstrapPrefixBasedOnWidth(constraints.maxWidth);
 
         //
         // We need to iterate through all the children and consider any potential order
@@ -240,13 +208,10 @@ class BootstrapCol extends StatelessWidget {
     required this.child,
     this.fit = FlexFit.loose,
     this.absoluteSizes = true,
-    String sizes = "",
-    String offsets = "",
+    this.sizes = GridColSize.defaultSize,
+    this.offsets = GridOffsetSize.defaultSize, // Changed from String to GridColSize
     String orders = "",
-    this.invisibleForSizes,
-  }) : this.sizes = sizes.trim(),
-       this.offsets = offsets.trim(),
-       this.orders = orders.trim() {
+  }) : this.orders = orders.trim() {
     _initialize();
   }
 
@@ -273,9 +238,9 @@ class BootstrapCol extends StatelessWidget {
   /// depending on the screen width.
   ///
   /// Example:
-  ///   sizes: 'col-12 col-sd-12 col-md-6 col-lg-4 col-xl-4'
+  ///   sizes: BootstarpColSize(xs: ColSize.col12, md: ColSize.col6)
   ///
-  final String sizes;
+  final GridColSize sizes;
 
   ///
   /// Offsets (= number of columns) to push this Widget to the right
@@ -283,9 +248,9 @@ class BootstrapCol extends StatelessWidget {
   /// Corresponds to the Bootstrap classes: .offset-*
   ///
   /// Example:
-  ///   offsets: 'offset-0 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4'
+  ///   offsets: GridColSize(xs: ColSize.col0, sm: ColSize.col1, md: ColSize.col2)
   ///
-  final String offsets;
+  final GridOffsetSize offsets; // Updated type
 
   ///
   /// Sequence orders
@@ -298,16 +263,6 @@ class BootstrapCol extends StatelessWidget {
   final String orders;
 
   ///
-  /// Invisibility
-  ///
-  /// If you want to make this instance invisible for extra-small devices, mention the 'xs'
-  ///
-  /// Example:
-  ///   invisibleForSizes: 'xs xl'
-  ///
-  final String? invisibleForSizes;
-
-  ///
   /// Do we consider relative dimensions (based on the parent container)
   /// or absolute (based on the browser window)
   /// Default: relative = false
@@ -317,45 +272,34 @@ class BootstrapCol extends StatelessWidget {
   //
   // Flex ratios per size, based on the column's definition
   //
-  final Map<String, int> _ratiosPerSize = {
-    'xl': 100,
-    'lg': 100,
-    'md': 100,
-    'sm': 100,
-    '': 100,
+  final Map<ColSize, int> _ratiosPerSize = {
+    ColSize.col12: 100,
+    ColSize.col10: 100,
+    ColSize.col8: 100,
+    ColSize.col6: 100,
+    ColSize.col0: 100,
   };
 
   //
   // Offsets per size, based on the column's definition
   //
-  final Map<String, int> _offsetsPerSize = {
-    'xl': -100,
-    'lg': -100,
-    'md': -100,
-    'sm': -100,
-    '': -100,
+  final Map<ColSize, int> _offsetsPerSize = {
+    ColSize.col12: -100,
+    ColSize.col10: -100,
+    ColSize.col8: -100,
+    ColSize.col6: -100,
+    ColSize.col0: -100,
   };
 
   //
   // Sequence order per size, based on the column's definition
   //
-  final Map<String, int> orderPerSize = {
-    'xl': 0,
-    'lg': 0,
-    'md': 0,
-    'sm': 0,
-    '': 0,
-  };
-
-  //
-  // Sequence order per size, based on the column's definition
-  //
-  final Map<String, bool> hiddenPerSize = {
-    'xl': false,
-    'lg': false,
-    'md': false,
-    'sm': false,
-    '': false,
+  final Map<ColSize, int> orderPerSize = {
+    ColSize.col12: 0,
+    ColSize.col10: 0,
+    ColSize.col8: 0,
+    ColSize.col6: 0,
+    ColSize.col0: 0,
   };
 
   //
@@ -363,11 +307,27 @@ class BootstrapCol extends StatelessWidget {
   // definition, as well as the offsets
   //
   void _initialize() {
-    final int nbPrefixes = _prefixes.length;
+    final int nbPrefixes = ColSize.values.length;
 
+    // Updated to use BootstarpColSize instead of parsing strings
+    _ratiosPerSize[ColSize.col12] = sizes.xl.value;
+    _ratiosPerSize[ColSize.col10] = sizes.lg.value;
+    _ratiosPerSize[ColSize.col8] = sizes.md.value;
+    _ratiosPerSize[ColSize.col6] = sizes.sm.value;
+    _ratiosPerSize[ColSize.col0] = sizes.xs.value;
+
+    _offsetsPerSize[ColSize.col12] = offsets.xl.value; // Updated to use GridColSize
+    _offsetsPerSize[ColSize.col10] = offsets.lg.value; // Updated to use GridColSize
+    _offsetsPerSize[ColSize.col8] = offsets.md.value; // Updated to use GridColSize
+    _offsetsPerSize[ColSize.col6] = offsets.sm.value; // Updated to use GridColSize
+    _offsetsPerSize[ColSize.col0] = offsets.xs.value; // Updated to use GridColSize
+
+    //
+    // ... the sequence orders (=> order-*)
+    //
     void _initArray({
       required String referenceArgument,
-      required Map<String, int> map,
+      required Map<ColSize, int> map,
       required String argPrefix,
       required Function minMaxFct,
       int lowerBoundValue = 0,
@@ -386,8 +346,8 @@ class BootstrapCol extends StatelessWidget {
                   .where((t) => t.trim().isNotEmpty)
                   .toList();
       parts.forEach((String part) {
-        _prefixes.forEach((pfx) {
-          final String prefix = '$argPrefix-$pfx${pfx == "" ? "" : "-"}';
+        ColSize.values.forEach((pfx) {
+          final String prefix = '$argPrefix-${pfx.name}${pfx == ColSize.col0 ? "" : "-"}';
           if (part.startsWith(prefix)) {
             String valString = part.split(prefix).last;
             if (valString != prefix) {
@@ -404,7 +364,7 @@ class BootstrapCol extends StatelessWidget {
       // As there might be holes, we need to re-adapt
       //
       for (int idx = 0; idx < nbPrefixes; idx++) {
-        String pfx = _prefixesReversed[idx];
+        ColSize pfx = ColSize.values[idx];
         int? value = map[pfx];
 
         if (value == noValue) {
@@ -417,7 +377,7 @@ class BootstrapCol extends StatelessWidget {
           // Look for the nearest value in higher resolutions
           //
           for (i = idx + 1; i < nbPrefixes; i++) {
-            String pfx2 = _prefixesReversed[i];
+            ColSize pfx2 = ColSize.values[i];
             if (map[pfx2] != noValue) {
               value = map[pfx2]!;
               break;
@@ -429,7 +389,7 @@ class BootstrapCol extends StatelessWidget {
             // Look for the nearest value in lower resolutions
             //
             for (int j = i - 1; j > -1; j--) {
-              String pfx3 = _prefixesReversed[j];
+              ColSize pfx3 = ColSize.values[j];
               if (map[pfx3] != noValue) {
                 value = map[pfx3]!;
                 break;
@@ -442,34 +402,6 @@ class BootstrapCol extends StatelessWidget {
       }
     }
 
-    //
-    // First, the sizes (flex => col-*)
-    //
-    _initArray(
-      referenceArgument: sizes,
-      map: _ratiosPerSize,
-      argPrefix: 'col',
-      minMaxFct: math.min,
-      noValue: 100,
-      minMaxNoValueReference: _numberOfColumns,
-    );
-
-    //
-    // Then, the offsets (=> offset-*  => marginLeft)
-    //
-    _initArray(
-      referenceArgument: offsets,
-      map: _offsetsPerSize,
-      argPrefix: 'offset',
-      minMaxFct: math.max,
-      noValue: -100,
-      minMaxNoValueReference: 0,
-      lowerBoundValue: -1,
-    );
-
-    //
-    // ... the sequence orders (=> order-*)
-    //
     _initArray(
       referenceArgument: orders,
       map: orderPerSize,
@@ -478,30 +410,13 @@ class BootstrapCol extends StatelessWidget {
       noValue: -100,
       minMaxNoValueReference: 0,
     );
-
-    //
-    // Finally, invisibility
-    //
-    List<String> parts =
-        (invisibleForSizes ?? "").trim().isEmpty
-            ? []
-            : invisibleForSizes!
-                .toLowerCase()
-                .split(' ')
-                .where((t) => t.trim().isNotEmpty)
-                .toList();
-    parts.forEach((String pfx) {
-      if (['xl', 'lg', 'md', 'sm', 'xs'].contains(pfx)) {
-        hiddenPerSize[pfx == 'xs' ? '' : pfx] = true;
-      }
-    });
   }
 
   //
   // Returns the flex ratio % column's definition and available width of
   // the container
   //
-  int _getFlexRatio(String prefix) {
+  int _getFlexRatio(ColSize prefix) {
     return _ratiosPerSize[prefix]!;
   }
 
@@ -509,7 +424,7 @@ class BootstrapCol extends StatelessWidget {
   // Returns the leftMargin % column's definition and available width of
   // the container.  This corresponds to the offset-*
   //
-  int _getLeftMarginRatio(String prefix) {
+  int _getLeftMarginRatio(ColSize prefix) {
     return _offsetsPerSize[prefix] ?? 0;
   }
 
@@ -520,18 +435,16 @@ class BootstrapCol extends StatelessWidget {
         //
         // Get the prefix for the definition, based on the available width
         //
-        String pfx = bootstrapPrefixBasedOnWidth(
+        ColSize pfx = bootstrapPrefixBasedOnWidth(
           absoluteSizes
               ? MediaQuery.of(context).size.width
               : constraints.maxWidth,
         );
 
         //
-        // Check if invisible
+        // Check if invisible using ColSize.col0
         //
-        bool isInvisible = hiddenPerSize[pfx]!;
-
-        if (isInvisible) {
+        if (pfx == ColSize.col0) {
           return Container();
         }
 
@@ -594,12 +507,12 @@ class BootstrapVisibility extends StatelessWidget {
   //
   // Visibility per size, based on the column's definition
   //
-  final Map<String, bool> _visibilityPerSize = {
-    'xl': false,
-    'lg': false,
-    'md': false,
-    'sm': false,
-    '': false,
+  final Map<ColSize, bool> _visibilityPerSize = {
+    ColSize.col12: false,
+    ColSize.col10: false,
+    ColSize.col8: false,
+    ColSize.col6: false,
+    ColSize.col0: false,
   };
 
   //
@@ -619,9 +532,9 @@ class BootstrapVisibility extends StatelessWidget {
                 .where((t) => t.trim().isNotEmpty)
                 .toList();
     parts.forEach((String part) {
-      _prefixes.forEach((pfx) {
-        final String prefix = 'col-$pfx';
-        if (part.startsWith(prefix) && pfx != '') {
+      ColSize.values.forEach((pfx) {
+        final String prefix = 'col-${pfx.name}';
+        if (part.startsWith(prefix) && pfx != ColSize.col0) {
           _visibilityPerSize[pfx] = true;
         }
       });
@@ -633,10 +546,7 @@ class BootstrapVisibility extends StatelessWidget {
     //
     // Get the prefix for the definition, based on the available width
     //
-    String pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
-    if (pfx == '') {
-      pfx = 'xs';
-    }
+    ColSize pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
 
     //
     // Check if it is visible
@@ -671,15 +581,15 @@ class BootstrapVisibility extends StatelessWidget {
 /// returns the nearest (upper first)
 ///
 dynamic bootStrapValueBasedOnSize({
-  required Map<String, dynamic> sizes,
+  required Map<ColSize, dynamic> sizes,
   required BuildContext context,
 }) {
   //
   // Get the prefix for the definition, based on the available width
   //
-  String pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
+  ColSize pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
 
-  final int nbPrefixes = _prefixes.length;
+  final int nbPrefixes = ColSize.values.length;
   dynamic value;
 
   //
@@ -692,13 +602,13 @@ dynamic bootStrapValueBasedOnSize({
     // No definition was found for this prefix
     //
     int i;
-    int idx = _prefixes.indexOf(pfx);
+    int idx = ColSize.values.indexOf(pfx);
 
     //
     // Look for the nearest value in higher resolutions
     //
     for (i = idx + 1; i < nbPrefixes; i++) {
-      String pfx2 = _prefixesReversed[i];
+      ColSize pfx2 = ColSize.values[i];
       if (sizes[pfx2] != null) {
         value = sizes[pfx2];
         break;
@@ -710,7 +620,7 @@ dynamic bootStrapValueBasedOnSize({
       // Look for the nearest value in lower resolutions
       //
       for (int j = i - 1; j > -1; j--) {
-        String pfx3 = _prefixesReversed[j];
+        ColSize pfx3 = ColSize.values[j];
         if (sizes[pfx3] != null) {
           value = sizes[pfx3];
           break;
