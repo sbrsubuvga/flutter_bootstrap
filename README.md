@@ -33,12 +33,12 @@ To use this package, add it to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  bootstrap: ^0.0.2
+  bootstrap: ^0.1.0
 ```
 
 
 
-[//]: # (## Example App Screenshot)
+## Example App Screenshot
 
-[//]: # ()
-[//]: # (<img alt="Example App Screenshot" src="https://raw.githubusercontent.com/sbrsubuvga/zatca/refs/heads/main/assets/example_app.png" width="821" height="798" />)
+
+<img alt="Example App Screenshot" src="https://raw.githubusercontent.com/sbrsubuvga/flutter_bootstrap/refs/heads/main/assets/Screenshot.png"  />
