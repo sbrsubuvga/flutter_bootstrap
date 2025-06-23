@@ -88,7 +88,7 @@ class BootstrapContainer extends StatelessWidget {
     //
     // If the container is fluid, no constraints in terms of width
     //
-    if (this.fluid) {
+    if (fluid) {
       return width;
     }
 
@@ -173,8 +173,8 @@ class BootstrapRow extends StatelessWidget {
         //
         // We need to iterate through all the children and consider any potential order
         //
-        List<BootstrapCol> _children = List.from(children);
-        _children.sort(
+        List<BootstrapCol> myChildren = List.from(children);
+        myChildren.sort(
           (a, b) => (a.orderPerSize[pfx] ?? 0) - (b.orderPerSize[pfx] ?? 0),
         );
 
@@ -190,7 +190,7 @@ class BootstrapRow extends StatelessWidget {
           child: Wrap(
             alignment: WrapAlignment.start,
             direction: Axis.horizontal,
-            children: _children,
+            children: myChildren,
           ),
         );
       },
@@ -306,8 +306,6 @@ class BootstrapCol extends StatelessWidget {
   // definition, as well as the offsets
   //
   void _initialize() {
-    final int nbPrefixes = BCol.values.length;
-
     // Updated to use BootstarpColSize instead of parsing strings
     _ratiosPerSize[BCol.col12] = sizes.xl.value;
     _ratiosPerSize[BCol.col10] = sizes.lg.value;
