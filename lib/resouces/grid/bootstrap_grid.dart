@@ -3,27 +3,27 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:bootstrap_plus/resouces/models/bootstrap_col_size.dart';
 
-import 'enums.dart';
+import '../enums.dart';
 
 double _oneColumnRatio = 0.083333;
 
 ///
 /// Returns the definition prefix, based on the available width
 ///
-ColSize bootstrapPrefixBasedOnWidth(double width) {
+BCol bootstrapPrefixBasedOnWidth(double width) {
   if (width > 1200) {
-    return ColSize.col12; // xl
+    return BCol.col12; // xl
   }
   if (width > 992) {
-    return ColSize.col10; // lg
+    return BCol.col10; // lg
   }
   if (width > 767) {
-    return ColSize.col8; // md
+    return BCol.col8; // md
   }
   if (width > 575) {
-    return ColSize.col6; // sm
+    return BCol.col6; // sm
   }
-  return ColSize.col6; // xs
+  return BCol.col6; // xs
 }
 
 ///
@@ -169,7 +169,7 @@ class BootstrapRow extends StatelessWidget {
         //
         // Get the prefix for the definition, based on the available width
         //
-        ColSize pfx = bootstrapPrefixBasedOnWidth(constraints.maxWidth);
+        BCol pfx = bootstrapPrefixBasedOnWidth(constraints.maxWidth);
 
         //
         // We need to iterate through all the children and consider any potential order
@@ -208,10 +208,10 @@ class BootstrapCol extends StatelessWidget {
     required this.child,
     this.fit = FlexFit.loose,
     this.absoluteSizes = true,
-    this.sizes = GridColSize.defaultSize,
-    this.offsets = GridOffsetSize.defaultSize, // Changed from String to GridColSize
-    String orders = "",
-  }) : this.orders = orders.trim() {
+    this.sizes = GridCol.defaultSize,
+    this.offsets = GridOffset.defaultSize,
+    this.orders = GridOrder.defaultSize, // Changed from String to GridOrderSize
+  }) {
     _initialize();
   }
 
@@ -240,7 +240,7 @@ class BootstrapCol extends StatelessWidget {
   /// Example:
   ///   sizes: BootstarpColSize(xs: ColSize.col12, md: ColSize.col6)
   ///
-  final GridColSize sizes;
+  final GridCol sizes;
 
   ///
   /// Offsets (= number of columns) to push this Widget to the right
@@ -250,7 +250,7 @@ class BootstrapCol extends StatelessWidget {
   /// Example:
   ///   offsets: GridColSize(xs: ColSize.col0, sm: ColSize.col1, md: ColSize.col2)
   ///
-  final GridOffsetSize offsets; // Updated type
+  final GridOffset offsets;
 
   ///
   /// Sequence orders
@@ -258,9 +258,9 @@ class BootstrapCol extends StatelessWidget {
   /// Corresponds to the Bootstrap classes: .order-*
   ///
   /// Example:
-  ///   orders: 'order-2 order-sm-2 order-md-1 order-lg-1 order-xl-1'
+  ///   orders: GridOrderSize(xs: ColSize.col2, sm: ColSize.col2, md: ColSize.col1)
   ///
-  final String orders;
+  final GridOrder orders; // Updated type
 
   ///
   /// Do we consider relative dimensions (based on the parent container)
@@ -272,34 +272,34 @@ class BootstrapCol extends StatelessWidget {
   //
   // Flex ratios per size, based on the column's definition
   //
-  final Map<ColSize, int> _ratiosPerSize = {
-    ColSize.col12: 100,
-    ColSize.col10: 100,
-    ColSize.col8: 100,
-    ColSize.col6: 100,
-    ColSize.col0: 100,
+  final Map<BCol, int> _ratiosPerSize = {
+    BCol.col12: 100,
+    BCol.col10: 100,
+    BCol.col8: 100,
+    BCol.col6: 100,
+    BCol.col0: 100,
   };
 
   //
   // Offsets per size, based on the column's definition
   //
-  final Map<ColSize, int> _offsetsPerSize = {
-    ColSize.col12: -100,
-    ColSize.col10: -100,
-    ColSize.col8: -100,
-    ColSize.col6: -100,
-    ColSize.col0: -100,
+  final Map<BCol, int> _offsetsPerSize = {
+    BCol.col12: -100,
+    BCol.col10: -100,
+    BCol.col8: -100,
+    BCol.col6: -100,
+    BCol.col0: -100,
   };
 
   //
   // Sequence order per size, based on the column's definition
   //
-  final Map<ColSize, int> orderPerSize = {
-    ColSize.col12: 0,
-    ColSize.col10: 0,
-    ColSize.col8: 0,
-    ColSize.col6: 0,
-    ColSize.col0: 0,
+  final Map<BCol, int> orderPerSize = {
+    BCol.col12: 0,
+    BCol.col10: 0,
+    BCol.col8: 0,
+    BCol.col6: 0,
+    BCol.col0: 0,
   };
 
   //
@@ -307,116 +307,36 @@ class BootstrapCol extends StatelessWidget {
   // definition, as well as the offsets
   //
   void _initialize() {
-    final int nbPrefixes = ColSize.values.length;
+    final int nbPrefixes = BCol.values.length;
 
     // Updated to use BootstarpColSize instead of parsing strings
-    _ratiosPerSize[ColSize.col12] = sizes.xl.value;
-    _ratiosPerSize[ColSize.col10] = sizes.lg.value;
-    _ratiosPerSize[ColSize.col8] = sizes.md.value;
-    _ratiosPerSize[ColSize.col6] = sizes.sm.value;
-    _ratiosPerSize[ColSize.col0] = sizes.xs.value;
+    _ratiosPerSize[BCol.col12] = sizes.xl.value;
+    _ratiosPerSize[BCol.col10] = sizes.lg.value;
+    _ratiosPerSize[BCol.col8] = sizes.md.value;
+    _ratiosPerSize[BCol.col6] = sizes.sm.value;
+    _ratiosPerSize[BCol.col0] = sizes.xs.value;
 
-    _offsetsPerSize[ColSize.col12] = offsets.xl.value; // Updated to use GridColSize
-    _offsetsPerSize[ColSize.col10] = offsets.lg.value; // Updated to use GridColSize
-    _offsetsPerSize[ColSize.col8] = offsets.md.value; // Updated to use GridColSize
-    _offsetsPerSize[ColSize.col6] = offsets.sm.value; // Updated to use GridColSize
-    _offsetsPerSize[ColSize.col0] = offsets.xs.value; // Updated to use GridColSize
+    _offsetsPerSize[BCol.col12] = offsets.xl.value;
+    _offsetsPerSize[BCol.col10] = offsets.lg.value;
+    _offsetsPerSize[BCol.col8] = offsets.md.value;
+    _offsetsPerSize[BCol.col6] = offsets.sm.value;
+    _offsetsPerSize[BCol.col0] = offsets.xs.value;
 
     //
-    // ... the sequence orders (=> order-*)
+    // Initialize orderPerSize using GridOrderSize
     //
-    void _initArray({
-      required String referenceArgument,
-      required Map<ColSize, int> map,
-      required String argPrefix,
-      required Function minMaxFct,
-      int lowerBoundValue = 0,
-      required int noValue,
-      required int minMaxNoValueReference,
-    }) {
-      //
-      // Identification of the defined "dimensions"
-      //
-      List<String> parts =
-          referenceArgument.isEmpty
-              ? []
-              : referenceArgument
-                  .toLowerCase()
-                  .split(' ')
-                  .where((t) => t.trim().isNotEmpty)
-                  .toList();
-      parts.forEach((String part) {
-        ColSize.values.forEach((pfx) {
-          final String prefix = '$argPrefix-${pfx.name}${pfx == ColSize.col0 ? "" : "-"}';
-          if (part.startsWith(prefix)) {
-            String valString = part.split(prefix).last;
-            if (valString != prefix) {
-              int? value = int.tryParse(valString);
-              if (value != null && value < 13 && value > lowerBoundValue) {
-                map[pfx] = minMaxFct(map[pfx], value);
-              }
-            }
-          }
-        });
-      });
-
-      //
-      // As there might be holes, we need to re-adapt
-      //
-      for (int idx = 0; idx < nbPrefixes; idx++) {
-        ColSize pfx = ColSize.values[idx];
-        int? value = map[pfx];
-
-        if (value == noValue) {
-          //
-          // No definition was found for this prefix
-          //
-          int i;
-
-          //
-          // Look for the nearest value in higher resolutions
-          //
-          for (i = idx + 1; i < nbPrefixes; i++) {
-            ColSize pfx2 = ColSize.values[i];
-            if (map[pfx2] != noValue) {
-              value = map[pfx2]!;
-              break;
-            }
-          }
-
-          if (value == noValue) {
-            //
-            // Look for the nearest value in lower resolutions
-            //
-            for (int j = i - 1; j > -1; j--) {
-              ColSize pfx3 = ColSize.values[j];
-              if (map[pfx3] != noValue) {
-                value = map[pfx3]!;
-                break;
-              }
-            }
-          }
-
-          map[pfx] = minMaxFct(minMaxNoValueReference, value);
-        }
-      }
-    }
-
-    _initArray(
-      referenceArgument: orders,
-      map: orderPerSize,
-      argPrefix: 'order',
-      minMaxFct: math.max,
-      noValue: -100,
-      minMaxNoValueReference: 0,
-    );
+    orderPerSize[BCol.col12] = orders.xl.value;
+    orderPerSize[BCol.col10] = orders.lg.value;
+    orderPerSize[BCol.col8] = orders.md.value;
+    orderPerSize[BCol.col6] = orders.sm.value;
+    orderPerSize[BCol.col0] = orders.xs.value;
   }
 
   //
   // Returns the flex ratio % column's definition and available width of
   // the container
   //
-  int _getFlexRatio(ColSize prefix) {
+  int _getFlexRatio(BCol prefix) {
     return _ratiosPerSize[prefix]!;
   }
 
@@ -424,7 +344,7 @@ class BootstrapCol extends StatelessWidget {
   // Returns the leftMargin % column's definition and available width of
   // the container.  This corresponds to the offset-*
   //
-  int _getLeftMarginRatio(ColSize prefix) {
+  int _getLeftMarginRatio(BCol prefix) {
     return _offsetsPerSize[prefix] ?? 0;
   }
 
@@ -435,7 +355,7 @@ class BootstrapCol extends StatelessWidget {
         //
         // Get the prefix for the definition, based on the available width
         //
-        ColSize pfx = bootstrapPrefixBasedOnWidth(
+        BCol pfx = bootstrapPrefixBasedOnWidth(
           absoluteSizes
               ? MediaQuery.of(context).size.width
               : constraints.maxWidth,
@@ -444,7 +364,7 @@ class BootstrapCol extends StatelessWidget {
         //
         // Check if invisible using ColSize.col0
         //
-        if (pfx == ColSize.col0) {
+        if (pfx == BCol.col0) {
           return Container();
         }
 
@@ -507,12 +427,12 @@ class BootstrapVisibility extends StatelessWidget {
   //
   // Visibility per size, based on the column's definition
   //
-  final Map<ColSize, bool> _visibilityPerSize = {
-    ColSize.col12: false,
-    ColSize.col10: false,
-    ColSize.col8: false,
-    ColSize.col6: false,
-    ColSize.col0: false,
+  final Map<BCol, bool> _visibilityPerSize = {
+    BCol.col12: false,
+    BCol.col10: false,
+    BCol.col8: false,
+    BCol.col6: false,
+    BCol.col0: false,
   };
 
   //
@@ -532,9 +452,9 @@ class BootstrapVisibility extends StatelessWidget {
                 .where((t) => t.trim().isNotEmpty)
                 .toList();
     parts.forEach((String part) {
-      ColSize.values.forEach((pfx) {
+      BCol.values.forEach((pfx) {
         final String prefix = 'col-${pfx.name}';
-        if (part.startsWith(prefix) && pfx != ColSize.col0) {
+        if (part.startsWith(prefix) && pfx != BCol.col0) {
           _visibilityPerSize[pfx] = true;
         }
       });
@@ -546,7 +466,7 @@ class BootstrapVisibility extends StatelessWidget {
     //
     // Get the prefix for the definition, based on the available width
     //
-    ColSize pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
+    BCol pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
 
     //
     // Check if it is visible
@@ -581,15 +501,15 @@ class BootstrapVisibility extends StatelessWidget {
 /// returns the nearest (upper first)
 ///
 dynamic bootStrapValueBasedOnSize({
-  required Map<ColSize, dynamic> sizes,
+  required Map<BCol, dynamic> sizes,
   required BuildContext context,
 }) {
   //
   // Get the prefix for the definition, based on the available width
   //
-  ColSize pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
+  BCol pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
 
-  final int nbPrefixes = ColSize.values.length;
+  final int nbPrefixes = BCol.values.length;
   dynamic value;
 
   //
@@ -602,13 +522,13 @@ dynamic bootStrapValueBasedOnSize({
     // No definition was found for this prefix
     //
     int i;
-    int idx = ColSize.values.indexOf(pfx);
+    int idx = BCol.values.indexOf(pfx);
 
     //
     // Look for the nearest value in higher resolutions
     //
     for (i = idx + 1; i < nbPrefixes; i++) {
-      ColSize pfx2 = ColSize.values[i];
+      BCol pfx2 = BCol.values[i];
       if (sizes[pfx2] != null) {
         value = sizes[pfx2];
         break;
@@ -620,7 +540,7 @@ dynamic bootStrapValueBasedOnSize({
       // Look for the nearest value in lower resolutions
       //
       for (int j = i - 1; j > -1; j--) {
-        ColSize pfx3 = ColSize.values[j];
+        BCol pfx3 = BCol.values[j];
         if (sizes[pfx3] != null) {
           value = sizes[pfx3];
           break;
@@ -631,3 +551,4 @@ dynamic bootStrapValueBasedOnSize({
 
   return value;
 }
+

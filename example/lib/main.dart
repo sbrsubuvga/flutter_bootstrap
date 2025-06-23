@@ -31,101 +31,391 @@ class ExampleHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Bootstrap Example'),
       ),
-      body: BootstrapRow(
-        children: [
-          BootstrapCol(
-            offsets: GridOffsetSize(xl: ColSize.col2,lg:ColSize.col1),
-            sizes:GridColSize(xl: ColSize.col4,lg:ColSize.col6 ,md: ColSize.col6), /// 'col-12 col-xl-8 col-lg-6 col-md-6',
-            child: Container(
-              color: Colors.red,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 1'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            BootstrapRow(
+              children: [
+                // 12 span-1 columns
+                for (int i = 0; i < 12; i++)
+                  BootstrapCol(
+                    sizes: GridCol(
+                        col: BCol.col1,
+                        sm: BCol.col12,
+                        md: BCol.col6,
+                        lg: BCol.col4,
+                        xl: BCol.col3),
+                    child: Container(
+                      height: 60,
+                      margin: EdgeInsets.all(1),
+                      color: Colors.grey,
+                      alignment: Alignment.center,
+                      child: Text('colum A${i} '),
+                    ),
+                  ),
+              ],
             ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(xl: ColSize.col4,lg:ColSize.col6 ,md: ColSize.col6), /// 'col-12 col-xl-4 col-lg-6 col-md-6',
+            BootstrapRow(
+              children: [
+                // 3 span-4 columns
+                for (int i = 0; i < 3; i++)
+                  BootstrapCol(
+                    sizes: GridCol(
+                        col: BCol.col4,
+                        sm: BCol.col6,
+                        md: BCol.col6,
+                        lg: BCol.col4,
+                        xl: BCol.col4),
+                    child: Container(
+                      height: 60,
+                      margin: EdgeInsets.all(1),
+                      color: Colors.grey,
+                      alignment: Alignment.center,
+                      child: Text('colum B${i}'),
+                    ),
+                  ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            BootstrapRow(
+              children: [
+                // 1 span-4 + 1 span-8
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col4),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('span 4'),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col8),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('span 8'),
+                  ),
+                ),
+              ],
+            ),
+            BootstrapRow(
+              children: [
+                // 2 span-6 columns
+                for (int i = 0; i < 2; i++)
+                  BootstrapCol(
+                    sizes: GridCol(col: BCol.col6),
+                    child: Container(
+                      height: 60,
+                      margin: EdgeInsets.all(1),
+                      color: Colors.grey,
+                      alignment: Alignment.center,
+                      child: const Text('span 6'),
+                    ),
+                  ),
+              ],
+            ),
+            BootstrapRow(
+              children: [
+                // 1 span-12 column
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col12),
+                  child: Container(
+                    height: 60,
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('span 12'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            BootstrapRow(
+              children: [
+                // 1 span-4 + 1 span-8
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col4),
+                  orders: GridOrder(col: BCol.col1, md: BCol.col2),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('Order 1'),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col8),
+                  orders: GridOrder(col: BCol.col2, md: BCol.col1),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('Order 2'),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            BootstrapRow(
+              children: [
+                // 1 span-4 + 1 span-8
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col4),
+                  offsets: GridOffset(col: BCol.col2),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('Order 1'),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col4),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('Order 2'),
+                  ),
+                ),
+              ],
+            ),
+            BootstrapRow(
+              children: [
+                // 1 span-4 + 1 span-8
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col3),
+                  offsets: GridOffset(col: BCol.col2),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('Order 1'),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(col: BCol.col3),
+                  offsets: GridOffset(col: BCol.col2),
+                  child: Container(
+                    height: 60,
+                    margin: EdgeInsets.all(1),
+                    color: Colors.grey,
+                    alignment: Alignment.center,
+                    child: const Text('Order 2'),
+                  ),
+                ),
+              ],
+            ),
+            BootstrapRow(
+              children: [
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2,xl: BCol.col2,md: BCol.col3,sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: FilledButton(
+                      child: Text('Primary'),
+                      onPressed: () {
+                        print('Primary Button Pressed');
+                      },
+                      style: ButtonStyle().primary(),
+                    ),
+                  ),
+                ),
 
-            child: Container(
-              color: Colors.blue,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 2'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col4,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.green,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 3'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col4,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.yellow,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 4'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col0,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.brown,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 5'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(md: ColSize.col6,lg:ColSize.col4,xs: ColSize.col6), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.orange,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 6'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.orange,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 6'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.orange,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 6'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.orange,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 6'),
-            ),
-          ),
-          BootstrapCol(
-            sizes:GridColSize(col:ColSize.col2), /// 'col-12 col-md-6 col-lg-4 col-xs-6',
-            child: Container(
-              color: Colors.orange,
-              height: 100,
-              alignment: Alignment.center,
-              child: const Text('Column 6'),
-            ),
-          ),
-        ],
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2,xl: BCol.col2,md: BCol.col3,sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: FilledButton(
+                      child: Text('Secondary'),
+                      style: ButtonStyle().secondary(),
+                      onPressed: () {
+                        print('Secondary Button Pressed');
+                      },
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print('Success Button Pressed');
+                      },
+                      style: ButtonStyle().success(),
+                      child: const Text('Success'),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print('Danger Button Pressed');
+                      },
+                      style: ButtonStyle().danger(),
+                      child: const Text('Danger'),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: TextButton(
+                      onPressed: () {
+                        print('Warning Button Pressed');
+                      },
+                      style:ButtonStyle().warning(),
+                      child: const Text('Warning'),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: TextButton(
+                      onPressed: () {
+                        print('Info Button Pressed');
+                      },
+                      style: ButtonStyle().info(),
+                      child: const Text('Info'),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        print('Light Button Pressed');
+                      },
+                      style: ButtonStyle().light(),
+                      child: const Text('Light'),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        print('Dark Button Pressed');
+                      },
+                      style: ButtonStyle().dark(),
+                      child: const Text('Dark'),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: TextButton(
+                      onPressed: () {
+                        print('Link Button Pressed');
+                      },
+                      style: ButtonStyle().link(),
+                      child: const Text('Link'),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2,xl: BCol.col2,md: BCol.col3,sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: FilledButton(
+                      child: Text('Custom Primary'),
+                      onPressed: () {
+                        print('Primary Button Pressed');
+                      },
+                      style: ButtonStyle(
+
+                      ).primary().copyWith(
+                        elevation: WidgetStateProperty.all(2.0)
+
+                      ),
+                    ),
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child:Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            style: ButtonStyle().primary(),
+                            onPressed: (){},
+                            icon: Icon(Icons.home)
+                        ),
+                        IconButton(
+                            style: ButtonStyle().secondary(),
+                            onPressed: (){},
+                            icon: Icon(Icons.home)
+                        ),
+                        IconButton(
+                            style: ButtonStyle().success(),
+                            onPressed: (){},
+                            icon: Icon(Icons.home)
+                        ),
+                      ],
+                    )
+                  ),
+                ),
+                BootstrapCol(
+                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child:Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            style: ButtonStyle().primary().copyWith(
+                              iconColor: WidgetStateProperty.all(Colors.yellow)
+                            ),
+                            onPressed: (){},
+                            icon: Icon(Icons.home)
+                        ),
+                        IconButton(
+                            style: ButtonStyle().secondary(),
+                            onPressed: (){},
+                            icon: Icon(Icons.home)
+                        ),
+                        IconButton(
+                            style: ButtonStyle().success(),
+                            onPressed: (){},
+                            icon: Icon(Icons.home)
+                        ),
+                      ],
+                    )
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

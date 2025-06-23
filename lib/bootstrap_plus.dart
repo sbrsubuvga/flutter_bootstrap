@@ -1,3 +1,4 @@
 library bootstrap;
 
-export 'resouces/bootstrap_manager.dart';
+export 'resouces/grid/bootstrap_grid.dart';
+export 'resouces/buttons/bootstrap_buttons.dart';

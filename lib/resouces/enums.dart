@@ -1,4 +1,4 @@
-enum ColSize {
+enum BCol {
   col0(0),  //  invisible colum
   col1(1),  // 1 column
   col2(2),  // 2 columns
@@ -15,5 +15,5 @@ enum ColSize {
 
   final int value;
 
-  const ColSize(this.value);
+  const BCol(this.value);
 }

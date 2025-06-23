@@ -1,20 +1,20 @@
 import 'package:bootstrap_plus/resouces/enums.dart';
 
-class GridColSize {
-  final ColSize xs;
-  final ColSize sm;
-  final ColSize md;
-  final ColSize lg;
-  final ColSize xl;
+class GridCol {
+  final BCol xs;
+  final BCol sm;
+  final BCol md;
+  final BCol lg;
+  final BCol xl;
 
 
-  const GridColSize({
-    ColSize? xs ,
-    ColSize? sm ,
-    ColSize? md ,
-    ColSize? lg ,
-    ColSize? xl ,
-    ColSize col=ColSize.col12
+  const GridCol({
+    BCol? xs ,
+    BCol? sm ,
+    BCol? md ,
+    BCol? lg ,
+    BCol? xl ,
+    BCol col=BCol.col12
   }):
     xs = xs ?? col,
     sm = sm ?? col,
@@ -22,7 +22,7 @@ class GridColSize {
     lg = lg ?? col,
     xl = xl ?? col;
 
-  static const GridColSize defaultSize = GridColSize();
+  static const GridCol defaultSize = GridCol();
 
   @override
   String toString() {
@@ -31,23 +31,29 @@ class GridColSize {
 }
 
 
-class GridOffsetSize {
-  final ColSize xs;
-  final ColSize sm;
-  final ColSize md;
-  final ColSize lg;
-  final ColSize xl;
+class GridOffset {
+  final BCol xs;
+  final BCol sm;
+  final BCol md;
+  final BCol lg;
+  final BCol xl;
 
 
-  const GridOffsetSize({
-    this.xs = ColSize.col0,
-    this.sm = ColSize.col0,
-    this.md = ColSize.col0,
-    this.lg = ColSize.col0,
-    this.xl = ColSize.col0,
-  });
+  const GridOffset({
+    BCol? xs ,
+    BCol? sm ,
+    BCol? md ,
+    BCol? lg ,
+    BCol? xl ,
+    BCol col=BCol.col0
+  }):
+        xs = xs ?? col,
+        sm = sm ?? col,
+        md = md ?? col,
+        lg = lg ?? col,
+        xl = xl ?? col;
 
-  static const GridOffsetSize defaultSize = GridOffsetSize();
+  static const GridOffset defaultSize = GridOffset();
 
   @override
   String toString() {
@@ -55,22 +61,29 @@ class GridOffsetSize {
   }
 }
 
-class GridOrderSize {
-  final int xs;
-  final int sm;
-  final int md;
-  final int lg;
-  final int xl;
+class GridOrder {
+  final BCol xs;
+  final BCol sm;
+  final BCol md;
+  final BCol lg;
+  final BCol xl;
 
-  const GridOrderSize({
-    this.xs = 0,
-    this.sm = 0,
-    this.md = 0,
-    this.lg = 0,
-    this.xl = 0,
-  });
+  const GridOrder({
+    BCol? xs ,
+    BCol? sm ,
+    BCol? md ,
+    BCol? lg ,
+    BCol? xl ,
+    BCol col=BCol.col12
+  }):
+        xs = xs ?? col,
+        sm = sm ?? col,
+        md = md ?? col,
+        lg = lg ?? col,
+        xl = xl ?? col;
 
-  static const GridOrderSize defaultSize = GridOrderSize();
+
+  static const GridOrder defaultSize = GridOrder();
 
   @override
   String toString() {
