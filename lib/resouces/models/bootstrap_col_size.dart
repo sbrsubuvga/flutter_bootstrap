@@ -7,20 +7,18 @@ class GridCol {
   final BCol lg;
   final BCol xl;
 
-
   const GridCol({
-    BCol? xs ,
-    BCol? sm ,
-    BCol? md ,
-    BCol? lg ,
-    BCol? xl ,
-    BCol col=BCol.col12
-  }):
-    xs = xs ?? col,
-    sm = sm ?? col,
-    md = md ?? col,
-    lg = lg ?? col,
-    xl = xl ?? col;
+    BCol? xs,
+    BCol? sm,
+    BCol? md,
+    BCol? lg,
+    BCol? xl,
+    BCol col = BCol.col12,
+  }) : xs = xs ?? col,
+       sm = sm ?? col,
+       md = md ?? col,
+       lg = lg ?? col,
+       xl = xl ?? col;
 
   static const GridCol defaultSize = GridCol();
 
@@ -30,7 +28,6 @@ class GridCol {
   }
 }
 
-
 class GridOffset {
   final BCol xs;
   final BCol sm;
@@ -38,20 +35,18 @@ class GridOffset {
   final BCol lg;
   final BCol xl;
 
-
   const GridOffset({
-    BCol? xs ,
-    BCol? sm ,
-    BCol? md ,
-    BCol? lg ,
-    BCol? xl ,
-    BCol col=BCol.col0
-  }):
-        xs = xs ?? col,
-        sm = sm ?? col,
-        md = md ?? col,
-        lg = lg ?? col,
-        xl = xl ?? col;
+    BCol? xs,
+    BCol? sm,
+    BCol? md,
+    BCol? lg,
+    BCol? xl,
+    BCol col = BCol.col0,
+  }) : xs = xs ?? col,
+       sm = sm ?? col,
+       md = md ?? col,
+       lg = lg ?? col,
+       xl = xl ?? col;
 
   static const GridOffset defaultSize = GridOffset();
 
@@ -69,19 +64,17 @@ class GridOrder {
   final BCol xl;
 
   const GridOrder({
-    BCol? xs ,
-    BCol? sm ,
-    BCol? md ,
-    BCol? lg ,
-    BCol? xl ,
-    BCol col=BCol.col12
-  }):
-        xs = xs ?? col,
-        sm = sm ?? col,
-        md = md ?? col,
-        lg = lg ?? col,
-        xl = xl ?? col;
-
+    BCol? xs,
+    BCol? sm,
+    BCol? md,
+    BCol? lg,
+    BCol? xl,
+    BCol col = BCol.col12,
+  }) : xs = xs ?? col,
+       sm = sm ?? col,
+       md = md ?? col,
+       lg = lg ?? col,
+       xl = xl ?? col;
 
   static const GridOrder defaultSize = GridOrder();
 

@@ -551,4 +551,3 @@ dynamic bootStrapValueBasedOnSize({
 
   return value;
 }
-

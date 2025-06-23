@@ -223,7 +223,11 @@ class ExampleHomePage extends StatelessWidget {
             BootstrapRow(
               children: [
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2,xl: BCol.col2,md: BCol.col3,sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
@@ -235,9 +239,12 @@ class ExampleHomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2,xl: BCol.col2,md: BCol.col3,sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
@@ -250,7 +257,11 @@ class ExampleHomePage extends StatelessWidget {
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
@@ -263,7 +274,11 @@ class ExampleHomePage extends StatelessWidget {
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
@@ -276,20 +291,28 @@ class ExampleHomePage extends StatelessWidget {
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
                       onPressed: () {
                         print('Warning Button Pressed');
                       },
-                      style:ButtonStyle().warning(),
+                      style: ButtonStyle().warning(),
                       child: const Text('Warning'),
                     ),
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
@@ -302,7 +325,11 @@ class ExampleHomePage extends StatelessWidget {
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: OutlinedButton(
@@ -315,7 +342,11 @@ class ExampleHomePage extends StatelessWidget {
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: OutlinedButton(
@@ -328,7 +359,11 @@ class ExampleHomePage extends StatelessWidget {
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
@@ -341,7 +376,11 @@ class ExampleHomePage extends StatelessWidget {
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2,xl: BCol.col2,md: BCol.col3,sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
@@ -349,68 +388,65 @@ class ExampleHomePage extends StatelessWidget {
                       onPressed: () {
                         print('Primary Button Pressed');
                       },
-                      style: ButtonStyle(
-
-                      ).primary().copyWith(
-                        elevation: WidgetStateProperty.all(2.0)
-
-                      ),
+                      style: ButtonStyle()
+                          .primary()
+                          .copyWith(elevation: WidgetStateProperty.all(2.0)),
                     ),
                   ),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            style: ButtonStyle().primary(),
-                            onPressed: (){},
-                            icon: Icon(Icons.home)
-                        ),
-                        IconButton(
-                            style: ButtonStyle().secondary(),
-                            onPressed: (){},
-                            icon: Icon(Icons.home)
-                        ),
-                        IconButton(
-                            style: ButtonStyle().success(),
-                            onPressed: (){},
-                            icon: Icon(Icons.home)
-                        ),
-                      ],
-                    )
-                  ),
+                      padding: const EdgeInsets.all(4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              style: ButtonStyle().primary(),
+                              onPressed: () {},
+                              icon: Icon(Icons.home)),
+                          IconButton(
+                              style: ButtonStyle().secondary(),
+                              onPressed: () {},
+                              icon: Icon(Icons.home)),
+                          IconButton(
+                              style: ButtonStyle().success(),
+                              onPressed: () {},
+                              icon: Icon(Icons.home)),
+                        ],
+                      )),
                 ),
                 BootstrapCol(
-                  sizes: GridCol(lg: BCol.col2, xl: BCol.col2, md: BCol.col3, sm: BCol.col4),
+                  sizes: GridCol(
+                      lg: BCol.col2,
+                      xl: BCol.col2,
+                      md: BCol.col3,
+                      sm: BCol.col4),
                   child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            style: ButtonStyle().primary().copyWith(
-                              iconColor: WidgetStateProperty.all(Colors.yellow)
-                            ),
-                            onPressed: (){},
-                            icon: Icon(Icons.home)
-                        ),
-                        IconButton(
-                            style: ButtonStyle().secondary(),
-                            onPressed: (){},
-                            icon: Icon(Icons.home)
-                        ),
-                        IconButton(
-                            style: ButtonStyle().success(),
-                            onPressed: (){},
-                            icon: Icon(Icons.home)
-                        ),
-                      ],
-                    )
-                  ),
+                      padding: const EdgeInsets.all(4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              style: ButtonStyle().primary().copyWith(
+                                  iconColor:
+                                      WidgetStateProperty.all(Colors.yellow)),
+                              onPressed: () {},
+                              icon: Icon(Icons.home)),
+                          IconButton(
+                              style: ButtonStyle().secondary(),
+                              onPressed: () {},
+                              icon: Icon(Icons.home)),
+                          IconButton(
+                              style: ButtonStyle().success(),
+                              onPressed: () {},
+                              icon: Icon(Icons.home)),
+                        ],
+                      )),
                 ),
               ],
             )
