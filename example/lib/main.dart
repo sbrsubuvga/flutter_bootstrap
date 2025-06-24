@@ -231,8 +231,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().primary(),
                       child: Text('Primary'),
                     ),
@@ -248,9 +247,7 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
                       style: ButtonStyle().secondary(),
-                      onPressed: () {
-
-                      },
+                      onPressed: () {},
                       child: Text('Secondary'),
                     ),
                   ),
@@ -264,8 +261,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().success(),
                       child: const Text('Success'),
                     ),
@@ -280,8 +276,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().danger(),
                       child: const Text('Danger'),
                     ),
@@ -296,8 +291,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().warning(),
                       child: const Text('Warning'),
                     ),
@@ -312,8 +306,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().info(),
                       child: const Text('Info'),
                     ),
@@ -328,8 +321,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: OutlinedButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().light(),
                       child: const Text('Light'),
                     ),
@@ -344,8 +336,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: OutlinedButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().dark(),
                       child: const Text('Dark'),
                     ),
@@ -360,8 +351,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle().link(),
                       child: const Text('Link'),
                     ),
@@ -376,8 +366,7 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       style: ButtonStyle()
                           .primary()
                           .copyWith(elevation: WidgetStateProperty.all(2.0)),
