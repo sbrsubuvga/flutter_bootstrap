@@ -50,7 +50,7 @@ class ExampleHomePage extends StatelessWidget {
                       margin: EdgeInsets.all(1),
                       color: Colors.grey,
                       alignment: Alignment.center,
-                      child: Text('colum A${i} '),
+                      child: Text('colum A$i '),
                     ),
                   ),
               ],
@@ -71,7 +71,7 @@ class ExampleHomePage extends StatelessWidget {
                       margin: EdgeInsets.all(1),
                       color: Colors.grey,
                       alignment: Alignment.center,
-                      child: Text('colum B${i}'),
+                      child: Text('colum B$i'),
                     ),
                   ),
               ],
@@ -231,11 +231,10 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
-                      child: Text('Primary'),
                       onPressed: () {
-                        print('Primary Button Pressed');
                       },
                       style: ButtonStyle().primary(),
+                      child: Text('Primary'),
                     ),
                   ),
                 ),
@@ -248,11 +247,11 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
-                      child: Text('Secondary'),
                       style: ButtonStyle().secondary(),
                       onPressed: () {
-                        print('Secondary Button Pressed');
+
                       },
+                      child: Text('Secondary'),
                     ),
                   ),
                 ),
@@ -266,7 +265,6 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        print('Success Button Pressed');
                       },
                       style: ButtonStyle().success(),
                       child: const Text('Success'),
@@ -283,7 +281,6 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        print('Danger Button Pressed');
                       },
                       style: ButtonStyle().danger(),
                       child: const Text('Danger'),
@@ -300,7 +297,6 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
                       onPressed: () {
-                        print('Warning Button Pressed');
                       },
                       style: ButtonStyle().warning(),
                       child: const Text('Warning'),
@@ -317,7 +313,6 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
                       onPressed: () {
-                        print('Info Button Pressed');
                       },
                       style: ButtonStyle().info(),
                       child: const Text('Info'),
@@ -334,7 +329,6 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: OutlinedButton(
                       onPressed: () {
-                        print('Light Button Pressed');
                       },
                       style: ButtonStyle().light(),
                       child: const Text('Light'),
@@ -351,7 +345,6 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: OutlinedButton(
                       onPressed: () {
-                        print('Dark Button Pressed');
                       },
                       style: ButtonStyle().dark(),
                       child: const Text('Dark'),
@@ -368,7 +361,6 @@ class ExampleHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: TextButton(
                       onPressed: () {
-                        print('Link Button Pressed');
                       },
                       style: ButtonStyle().link(),
                       child: const Text('Link'),
@@ -384,13 +376,12 @@ class ExampleHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: FilledButton(
-                      child: Text('Custom Primary'),
                       onPressed: () {
-                        print('Primary Button Pressed');
                       },
                       style: ButtonStyle()
                           .primary()
                           .copyWith(elevation: WidgetStateProperty.all(2.0)),
+                      child: Text('Custom Primary'),
                     ),
                   ),
                 ),

@@ -402,8 +402,8 @@ class BootstrapCol extends StatelessWidget {
 /// defined in [sizes]
 ///
 class BootstrapVisibility extends StatelessWidget {
-  BootstrapVisibility({required this.child, String sizes = ""})
-    : this.sizes = sizes.trim() {
+  BootstrapVisibility({super.key, required this.child, String sizes = ""})
+    : sizes = sizes.trim() {
     _initialize();
   }
 
@@ -448,14 +448,14 @@ class BootstrapVisibility extends StatelessWidget {
                 .split(' ')
                 .where((t) => t.trim().isNotEmpty)
                 .toList();
-    parts.forEach((String part) {
-      BCol.values.forEach((pfx) {
+    for (var part in parts) {
+      for (var pfx in BCol.values) {
         final String prefix = 'col-${pfx.name}';
         if (part.startsWith(prefix) && pfx != BCol.col0) {
           _visibilityPerSize[pfx] = true;
         }
-      });
-    });
+      }
+    }
   }
 
   @override
